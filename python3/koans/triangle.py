@@ -21,8 +21,8 @@ def triangle(a, b, c):
         raise TriangleError("All zeros")
     if (a < 0) or (b < 0) or (c < 0):
         raise TriangleError("Negative")
-    if ((a + b) <= c):
-        raise TriangleError("Negative")
+    if atLeastTwoSidesGreaterThanTheThird(a, b, c) == False:
+        raise TriangleError("Invalid")
 
 
     if (a == b) and (b == c):
@@ -31,6 +31,16 @@ def triangle(a, b, c):
         return 'isosceles'
     else:
         return 'scalene'
+
+def atLeastTwoSidesGreaterThanTheThird(a, b, c):
+    if (a + b) <= c:
+        return False
+    if (b + c) <= a:
+        return False
+    if (c + a) <= b:
+        return False
+    else:
+        return True
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
