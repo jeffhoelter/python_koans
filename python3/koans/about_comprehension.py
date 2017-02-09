@@ -13,8 +13,8 @@ class AboutComprehension(Koan):
 
         comprehension = [delicacy.capitalize() for delicacy in feast]
 
-        self.assertEqual(__, comprehension[0])
-        self.assertEqual(__, comprehension[2])
+        self.assertEqual('Lambs', comprehension[0])
+        self.assertEqual('Orangutans', comprehension[2])
 
     def test_filtering_lists_with_list_comprehensions(self):
         feast = ['spam', 'sloths', 'orangutans', 'breakfast cereals',
@@ -22,15 +22,15 @@ class AboutComprehension(Koan):
 
         comprehension = [delicacy for delicacy in feast if len(delicacy) > 6]
 
-        self.assertEqual(__, len(feast))
-        self.assertEqual(__, len(comprehension))
+        self.assertEqual(5, len(feast))
+        self.assertEqual(3, len(comprehension))
 
     def test_unpacking_tuples_in_list_comprehensions(self):
         list_of_tuples = [(1, 'lumberjack'), (2, 'inquisition'), (4, 'spam')]
         comprehension = [ skit * number for number, skit in list_of_tuples ]
 
-        self.assertEqual(__, comprehension[0])
-        self.assertEqual(__, comprehension[2])
+        self.assertEqual('lumberjack', comprehension[0])
+        self.assertEqual('spamspamspamspam', comprehension[2])
 
     def test_double_list_comprehension(self):
         list_of_eggs = ['poached egg', 'fried egg']
