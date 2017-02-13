@@ -34,7 +34,40 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    if len(dice) == 0:
+        return 0
+    if len(dice) > 5:
+        raise Exception
+    else:
+        dict1 = {}
+        for die in dice:
+            if die in dict1:
+                currentValue = dict1[die]
+                dict1[die] = currentValue + 1
+            else:
+                dict1[die] = 1
+        return score_roll_from_dict(dict1)
+
+def score_roll_from_dict(rollDict):
+    score = 0
+    for key, value in rollDict.items():
+        if key == 1 and value > 0:
+            if value < 3:
+                score = score + (value * 100)
+            if value == 3:
+                score = score + 1000
+            if value > 3:
+                score = score + 1000 + ((value - 3) * 100)
+        if key == 5 and value > 0:
+            if value < 3:
+                score = score + (value * 50)
+            if value == 3:
+                score = score + 500
+            if value > 3:
+                score = score + 500 + ((value - 3) * 50)
+        if (key == 2 or key == 3 or key == 4 or key == 6) and value > 2:
+            score = score + (100 * key)
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
