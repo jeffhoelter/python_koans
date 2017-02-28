@@ -106,4 +106,3 @@ class AboutLists(Koan):
 
         # Note, popping from the left hand side of a list is
         # inefficient. Use collections.deque instead.
-
