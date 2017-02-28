@@ -16,7 +16,9 @@ class DiceSet:
     def roll(self, n):
         # Needs implementing!
         # Tip: random.randint(min, max) can be used to generate random numbers
-        self._values = [1,2,3,4,5]
+        self._values = []
+        for x in range(0, n):
+            self._values.append(random.randint(1, 6))
 
 class AboutDiceProject(Koan):
     def test_can_create_a_dice_set(self):
@@ -41,15 +43,22 @@ class AboutDiceProject(Koan):
 
     def test_dice_values_should_change_between_rolls(self):
         dice = DiceSet()
+        matchCounter = 0
 
-        dice.roll(5)
-        first_time = dice.values
+        for x in range(0, 100001):
+            dice.roll(5)
+            first_time = dice.values
 
-        dice.roll(5)
-        second_time = dice.values
+            dice.roll(5)
+            second_time = dice.values
 
-        self.assertNotEqual(first_time, second_time, \
-            "Two rolls should not be equal")
+            if first_time == second_time:
+                matchCounter = matchCounter + 1
+
+        self.assertTrue(matchCounter < 30)
+
+        #self.assertNotEqual(first_time, second_time, \
+        #    "Two rolls should not be equal")
 
         # THINK ABOUT IT:
         #
